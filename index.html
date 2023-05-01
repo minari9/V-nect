@@ -130,8 +130,6 @@
  const app = initializeApp(firebaseConfig);
  const database = getDatabase(app);
  const auth = getAuth(app)
- const provider1 = new GoogleAuthProvider(app);
- const provider = new OAuthProvider('microsoft.com');
 
 
 //SIGNUP
@@ -164,6 +162,7 @@
 
  //MICROSOFT
  microsoft.addEventListener('click',(e)=>{
+  const provider = new OAuthProvider('microsoft.com');
     signInWithRedirect(auth,provider)
     getRedirectResult(auth)
   .then((result) => {
@@ -182,6 +181,7 @@
 
    //GOOGLE
    google.addEventListener('click',(e)=>{
+    const provider1 = new GoogleAuthProvider(app);
     signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
