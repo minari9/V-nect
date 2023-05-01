@@ -66,7 +66,7 @@
                 <i class="fab fa-twitter"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
+                <i class="fab fa-google" id="google"></i>
               </a>
               <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"  id="microsoft"></i>
@@ -107,12 +107,13 @@
     <script type="module">
   // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
- import { getAuth, signInWithRedirect, getRedirectResult, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+ import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
 
  // Your web app's Firebase configuration
  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
  const firebaseConfig = {
    apiKey: "AIzaSyDNQAcisehSD9ozX_Vzc4o54gdOxP2K3YM",
    authDomain: "v-nect-registration.firebaseapp.com",
@@ -126,25 +127,34 @@
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
  const auth = getAuth(app)
- const provider = new OAuthProvider('microsoft.com');
+ const provider = new GoogleAuthProvider(app);
 
-//MICROSOFT
-   microsoft.addEventListener('click',(e)=>{
-    signInWithRedirect(auth,provider)
-    getRedirectResult(auth)
+//GOOGLE
+google.addEventListener('click',(e)=>{
+  signInWithPopup(auth, provider)
   .then((result) => {
-    // User is signed in.
-    // IdP data available in result.additionalUserInfo.profile.
-
-    // Get the OAuth access token and ID Token
-    const credential = OAuthProvider.credentialFromResult(result);
-    const accessToken = credential.accessToken;
-    const idToken = credential.idToken;
-  })
-  .catch((error) => {
-    // Handle error.
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    alert(user.displayName);
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+    alert(errorMessage);
   });
-  })
+
+})
+
     </script>
     
   </body>
