@@ -1,6 +1,6 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
- import { getAuth, signInWithRedirect, getRedirectResult, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+//  import { getAuth, signInWithRedirect, getRedirectResult, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
@@ -23,8 +23,8 @@
  const app = initializeApp(firebaseConfig);
  const database = getDatabase(app);
  const auth = getAuth(app)
- const provider1 = new GoogleAuthProvider(app);
- const provider = new OAuthProvider('microsoft.com');
+ const provider = new GoogleAuthProvider(app);
+//  const provider = new OAuthProvider('microsoft.com');
 
  signUp.addEventListener('click',()=>{
    
@@ -76,23 +76,23 @@
        });
 
    });
-//MICROSOFT
-   microsoft.addEventListener('click',(e)=>{
-    signInWithRedirect(auth,provider)
-    getRedirectResult(auth)
-  .then((result) => {
-    // User is signed in.
-    // IdP data available in result.additionalUserInfo.profile.
+// //MICROSOFT
+//    microsoft.addEventListener('click',(e)=>{
+//     signInWithRedirect(auth,provider)
+//     getRedirectResult(auth)
+//   .then((result) => {
+//     // User is signed in.
+//     // IdP data available in result.additionalUserInfo.profile.
 
-    // Get the OAuth access token and ID Token
-    const credential = OAuthProvider.credentialFromResult(result);
-    const accessToken = credential.accessToken;
-    const idToken = credential.idToken;
-  })
-  .catch((error) => {
-    // Handle error.
-  });
-  });
+//     // Get the OAuth access token and ID Token
+//     const credential = OAuthProvider.credentialFromResult(result);
+//     const accessToken = credential.accessToken;
+//     const idToken = credential.idToken;
+//   })
+//   .catch((error) => {
+//     // Handle error.
+//   });
+//   });
 
   //GOOGLE
   google.addEventListener('click',(e)=>{
