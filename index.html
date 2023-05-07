@@ -130,7 +130,7 @@
  const database = getDatabase(app);
  const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider();
- const microsoftProvider = new OAuthProvider('microsoft.com');
+ const microsoftProvider = new OAuthProvider();
 
  signUp.addEventListener('click',()=>{
    
