@@ -20,54 +20,54 @@
 
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
-//  const database = getDatabase(app);
- const auth = getAuth();
+ const database = getDatabase(app);
+ const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider(app);
-//  const microsoftProvider = new OAuthProvider('microsoft.com');
+ const microsoftProvider = new OAuthProvider('microsoft.com');
 
-//  signUp.addEventListener('click',()=>{
+ signUp.addEventListener('click',()=>{
    
-//    var username = document.getElementById('username').value;
-//    var email = document.getElementById('email').value;
-//    var password = document.getElementById('password').value;
+   var username = document.getElementById('username').value;
+   var email = document.getElementById('email').value;
+   var password = document.getElementById('password').value;
 
-//    createUserWithEmailAndPassword(auth, email, password)
-//        .then((userCredential) => {
-//    // Signed in 
-//            const user = userCredential.user;
+   createUserWithEmailAndPassword(auth, email, password)
+       .then((userCredential) => {
+   // Signed in 
+           const user = userCredential.user;
 
-//            set(ref(database, 'users/' + user.uid),{
-//                username: username,
-//                email: email,
-//            })
-//            alert('User Created');
-//    // ...
-//        })
-//        .catch((error) => {
-//            const errorMessage = error.message;
+           set(ref(database, 'users/' + user.uid),{
+               username: username,
+               email: email,
+           })
+           alert('User Created');
+   // ...
+       })
+       .catch((error) => {
+           const errorMessage = error.message;
 
-//            alert(errorMessage);
-//    // ..
-//        });
+           alert(errorMessage);
+   // ..
+       });
 
-//  });
+ });
 
 //MICROSOFT
-  //  microsoft.addEventListener('click',(e)=>{
-  //   signInWithPopup(auth, microsoftProvider)
-  //   .then((result) => {
-  //     // User is signed in.
-  //     // IdP data available in result.additionalUserInfo.profile.
+   microsoft.addEventListener('click',(e)=>{
+    signInWithPopup(auth, microsoftProvider)
+    .then((result) => {
+      // User is signed in.
+      // IdP data available in result.additionalUserInfo.profile.
   
-  //     // Get the OAuth access token and ID Token
-  //     const credential = OAuthProvider.credentialFromResult(result);
-  //     const accessToken = credential.accessToken;
-  //     const idToken = credential.idToken;
-  //   })
-  //   .catch((error) => {
-  //     // Handle error.
-  //   });
-  //  });
+      // Get the OAuth access token and ID Token
+      const credential = OAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
+      const idToken = credential.idToken;
+    })
+    .catch((error) => {
+      // Handle error.
+    });
+   });
 
   // GOOGLE
   google.addEventListener('click',(e)=>{
@@ -94,27 +94,27 @@
     });
   
   });
-  // login.addEventListener('click', ()=>{
-  //   var email = document.getElementById('Email').value;
-  //   var password = document.getElementById('Password').value;
+  login.addEventListener('click', ()=>{
+    var email = document.getElementById('Email').value;
+    var password = document.getElementById('Password').value;
  
-  //       signInWithEmailAndPassword(auth, email, password)
-  //           .then((userCredential) => {
-  //   // Signed in 
-  //               const user = userCredential.user;
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+    // Signed in 
+                const user = userCredential.user;
  
-  //               const dt = new Date();
-  //               update(ref(database, 'users/' + user.uid),{
-  //                   last_login: dt,
-  //               })
-  //               alert('User Logged In!');
-  //   // ...
-  //       })
-  //       .catch((error) => {
-  //           const errorMessage = error.message;
+                const dt = new Date();
+                update(ref(database, 'users/' + user.uid),{
+                    last_login: dt,
+                })
+                alert('User Logged In!');
+    // ...
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
  
-  //           alert(errorMessage);
-  //       });
+            alert(errorMessage);
+        });
  
-  //   });
+    });
 
