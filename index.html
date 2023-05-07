@@ -29,10 +29,10 @@
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f" id="facebook"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter" id="twitter"></i>
               </a>
               <a href="#" class="social-icon">
                 <i class="fab fa-google" id="google"></i>
@@ -60,16 +60,16 @@
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f" id="facebook"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter" id="twitter"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
+                <i class="fab fa-google" id="google"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in" id="microsoft"></i>
               </a>
             </div>
           </form>
@@ -109,7 +109,7 @@
        // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
- import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, OAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, OAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -131,6 +131,7 @@
  const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider();
  const microsoftProvider = new OAuthProvider('microsoft.com');
+ const provider = new FacebookAuthProvider();
 
  signUp.addEventListener('click',()=>{
    
@@ -203,6 +204,36 @@
     });
   
   });
+
+  //FACEBOOK
+  facebook.addEventListener('click',(e)=>{
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+    alert(user.displayName);
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+    alert(errorMessage);
+
+    // ...
+  });
+});
+
   login.addEventListener('click', ()=>{
     var email = document.getElementById('Email').value;
     var password = document.getElementById('Password').value;
