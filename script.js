@@ -23,34 +23,34 @@
  const database = getDatabase(app);
  const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider(app);
- const microsoftProvider = new OAuthProvider('microsoft.com');
+//  const microsoftProvider = new OAuthProvider('microsoft.com');
 
- signUp.addEventListener('click',()=>{
+//  signUp.addEventListener('click',()=>{
    
-   var username = document.getElementById('username').value;
-   var email = document.getElementById('email').value;
-   var password = document.getElementById('password').value;
+//    var username = document.getElementById('username').value;
+//    var email = document.getElementById('email').value;
+//    var password = document.getElementById('password').value;
 
-   createUserWithEmailAndPassword(auth, email, password)
-       .then((userCredential) => {
-   // Signed in 
-           const user = userCredential.user;
+//    createUserWithEmailAndPassword(auth, email, password)
+//        .then((userCredential) => {
+//    // Signed in 
+//            const user = userCredential.user;
 
-           set(ref(database, 'users/' + user.uid),{
-               username: username,
-               email: email,
-           })
-           alert('User Created');
-   // ...
-       })
-       .catch((error) => {
-           const errorMessage = error.message;
+//            set(ref(database, 'users/' + user.uid),{
+//                username: username,
+//                email: email,
+//            })
+//            alert('User Created');
+//    // ...
+//        })
+//        .catch((error) => {
+//            const errorMessage = error.message;
 
-           alert(errorMessage);
-   // ..
-       });
+//            alert(errorMessage);
+//    // ..
+//        });
 
- });
+//  });
 
 //MICROSOFT
   //  microsoft.addEventListener('click',(e)=>{
