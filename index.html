@@ -130,7 +130,7 @@
  const database = getDatabase(app);
  const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider();
-//  const microsoftProvider = new OAuthProvider('microsoft.com');
+ const microsoftProvider = new OAuthProvider('microsoft.com');
 
  signUp.addEventListener('click',()=>{
    
@@ -160,21 +160,21 @@
  });
 
 //MICROSOFT
-  //  microsoft.addEventListener('click',(e)=>{
-  //   signInWithPopup(auth, microsoftProvider)
-  //   .then((result) => {
-  //     // User is signed in.
-  //     // IdP data available in result.additionalUserInfo.profile.
+   microsoft.addEventListener('click',(e)=>{
+    signInWithPopup(auth, microsoftProvider)
+    .then((result) => {
+      // User is signed in.
+      // IdP data available in result.additionalUserInfo.profile.
   
-  //     // Get the OAuth access token and ID Token
-  //     const credential = OAuthProvider.credentialFromResult(result);
-  //     const accessToken = credential.accessToken;
-  //     const idToken = credential.idToken;
-  //   })
-  //   .catch((error) => {
-  //     // Handle error.
-  //   });
-  //  });
+      // Get the OAuth access token and ID Token
+      const credential = OAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
+      const idToken = credential.idToken;
+    })
+    .catch((error) => {
+      // Handle error.
+    });
+   });
 
   // GOOGLE
   google.addEventListener('click',(e)=>{
