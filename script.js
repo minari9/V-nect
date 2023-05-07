@@ -1,6 +1,6 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
- import { GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, getAuth, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+ import { GoogleAuthProvider, getAuth, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  // TODO: Add SDKs for Firebase products that you want to use
@@ -52,29 +52,6 @@
 
  });
 
- login.addEventListener('click', ()=>{
-   var email = document.getElementById('Email').value;
-   var password = document.getElementById('Password').value;
-
-       signInWithEmailAndPassword(auth, email, password)
-           .then((userCredential) => {
-   // Signed in 
-               const user = userCredential.user;
-
-               const dt = new Date();
-               update(ref(database, 'users/' + user.uid),{
-                   last_login: dt,
-               })
-               alert('User Logged In!');
-   // ...
-       })
-       .catch((error) => {
-           const errorMessage = error.message;
-
-           alert(errorMessage);
-       });
-
-   });
 //MICROSOFT
    microsoft.addEventListener('click',(e)=>{
     signInWithPopup(auth, microsoftProvider)
@@ -117,4 +94,27 @@
     });
   
   });
+  login.addEventListener('click', ()=>{
+    var email = document.getElementById('Email').value;
+    var password = document.getElementById('Password').value;
+ 
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+    // Signed in 
+                const user = userCredential.user;
+ 
+                const dt = new Date();
+                update(ref(database, 'users/' + user.uid),{
+                    last_login: dt,
+                })
+                alert('User Logged In!');
+    // ...
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+ 
+            alert(errorMessage);
+        });
+ 
+    });
 
