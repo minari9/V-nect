@@ -2,7 +2,7 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 //  import { GoogleAuthProvider, getAuth, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
- import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,7 +21,7 @@
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
  const database = getDatabase(app);
- const auth = getAuth();
+ const auth = getAuth(app);
 //  const googleProvider = new GoogleAuthProvider(app);
 //  const microsoftProvider = new OAuthProvider('microsoft.com');
 
