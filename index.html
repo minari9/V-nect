@@ -247,6 +247,7 @@ twitter.addEventListener('click', (e)=>{
 
     // The signed-in user info.
     const user = result.user;
+    alert(user.displayName);
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
@@ -257,6 +258,7 @@ twitter.addEventListener('click', (e)=>{
     const email = error.customData.email;
     // The AuthCredential type that was used.
     const credential = TwitterAuthProvider.credentialFromError(error);
+    alert(errorMessage);
     // ...
   });
 });
