@@ -20,7 +20,7 @@
 
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
- const database = getDatabase(app);
+//  const database = getDatabase(app);
  const auth = getAuth(app);
  const googleProvider = new GoogleAuthProvider(app);
 //  const microsoftProvider = new OAuthProvider('microsoft.com');
@@ -94,27 +94,27 @@
     });
   
   });
-  login.addEventListener('click', ()=>{
-    var email = document.getElementById('Email').value;
-    var password = document.getElementById('Password').value;
+  // login.addEventListener('click', ()=>{
+  //   var email = document.getElementById('Email').value;
+  //   var password = document.getElementById('Password').value;
  
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-    // Signed in 
-                const user = userCredential.user;
+  //       signInWithEmailAndPassword(auth, email, password)
+  //           .then((userCredential) => {
+  //   // Signed in 
+  //               const user = userCredential.user;
  
-                const dt = new Date();
-                update(ref(database, 'users/' + user.uid),{
-                    last_login: dt,
-                })
-                alert('User Logged In!');
-    // ...
-        })
-        .catch((error) => {
-            const errorMessage = error.message;
+  //               const dt = new Date();
+  //               update(ref(database, 'users/' + user.uid),{
+  //                   last_login: dt,
+  //               })
+  //               alert('User Logged In!');
+  //   // ...
+  //       })
+  //       .catch((error) => {
+  //           const errorMessage = error.message;
  
-            alert(errorMessage);
-        });
+  //           alert(errorMessage);
+  //       });
  
-    });
+  //   });
 
