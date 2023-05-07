@@ -117,4 +117,25 @@
         });
  
     });
-
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+  
+    logout.addEventListener('click', ()=>{
+      signOut(auth).then(() => {
+          // Sign-out successful.
+          alert('User Logged out!');
+        }).catch((error) => {
+          // An error happened.
+          const errorMessage = error.message;
+  
+          alert(errorMessage);
+        });
+    });
