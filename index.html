@@ -142,11 +142,6 @@
 
    createUserWithEmailAndPassword(auth, email, password)
        .then((userCredential) => {
-            sendEmailVerification(auth.currentUser)
-              .then(()=>{
-                alert("Email Verification sent!");
-                });
-
    // Signed in 
            const user = userCredential.user;
 
@@ -166,6 +161,12 @@
        });
 
  });
+
+ sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+    // ...
+  });
 
 //MICROSOFT
    microsoft.addEventListener('click',(e)=>{
