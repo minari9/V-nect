@@ -22,7 +22,7 @@
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
  const database = getDatabase(app);
- const auth = getAuth(app)
+ const auth = getAuth();
  const provider = new GoogleAuthProvider(app);
 //  const provider = new OAuthProvider('microsoft.com');
 
