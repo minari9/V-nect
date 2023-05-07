@@ -21,8 +21,8 @@
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
  const database = getDatabase(app);
- const auth = getAuth();
- const googleProvider = new GoogleAuthProvider();
+ const auth = getAuth(app);
+ const googleProvider = new GoogleAuthProvider(app);
  const microsoftProvider = new OAuthProvider('microsoft.com');
 
  signUp.addEventListener('click',()=>{
