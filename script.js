@@ -207,3 +207,28 @@
                 alert(errorMessage);
               });
           });
+          firebase.initializeApp(firebaseConfig);
+        
+          const firebaseRef = firebase.database().ref().child('users');
+          
+          firebaseRef.once("value").then(function(snapshot){
+            const loginInfo=snapshot.val();
+            document.getElementById("users").addEventListener("click",function(){
+              const username = document.getElementById("username");
+              const password = document.getElementById("pass");
+              if (username.value==loginInfo.username && password.value==loginInfo.password){
+                location.replace("home.html");
+              }else if(username.value!=loginInfo.username){
+                username.style.borderColor="red";
+              }else if(password.value!=loginInfo.password){
+                password.style.borderColor="red";
+              }
+            });
+          });
+          
+          document.getElementById('pass').addEventListener("input",function(){
+            document.getElementById("pass").style.borderColor="#ccc";
+          });
+          document.getElementById('username').addEventListener("input",function(){
+            document.getElementById("username").style.borderColor="#ccc";
+          });  
