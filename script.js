@@ -215,7 +215,7 @@
             const loginInfo=snapshot.val();
             document.getElementById("users").addEventListener("click",function(){
               const username = document.getElementById("username");
-              const password = document.getElementById("pass");
+              const email = document.getElementById("email");
               if (username.value==loginInfo.username && password.value==loginInfo.password){
                 location.replace("home.html");
               }else if(username.value!=loginInfo.username){
@@ -226,8 +226,8 @@
             });
           });
           
-          document.getElementById('pass').addEventListener("input",function(){
-            document.getElementById("pass").style.borderColor="#ccc";
+          document.getElementById('email').addEventListener("input",function(){
+            document.getElementById("email").style.borderColor="#ccc";
           });
           document.getElementById('username').addEventListener("input",function(){
             document.getElementById("username").style.borderColor="#ccc";
